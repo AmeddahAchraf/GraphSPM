@@ -468,8 +468,8 @@ import UIKit
     }
     
     // The functions for adding plots and reference lines need to be able to add plots
-    // both before and after the graph knows its viewport/size. 
-    // This needs to be the case so we can use it in interface builder as well as 
+    // both before and after the graph knows its viewport/size.
+    // This needs to be the case so we can use it in interface builder as well as
     // just adding it programatically.
     // These functions add the plots and reference lines to the graph.
     // The public functions will either save the plots and reference lines (in the case
@@ -942,9 +942,7 @@ import UIKit
             for layer in drawingLayers {
                 if let layer = layer as? ScrollableGraphViewDrawingLayer {
                     // The bar layer needs the zero Y position to set the bottom of the bar
-                    layer.zeroYPosition = zeroYPosition
-                    // Need to make sure this is set in createLinePath
-                    assert (layer.zeroYPosition > 0);
+                    layer.zeroYPosition = zeroYPosition > 0 ? zeroYPosition: (zeroYPosition) * -1
                     layer.updatePath()
                 }
             }
